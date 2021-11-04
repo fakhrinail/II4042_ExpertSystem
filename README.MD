@@ -30,7 +30,14 @@ Add more general information about project. What the purpose of the project is? 
 ## Setup
 
 Install CLIPS via official website
-Run using CLIPSDOS -f auto_repair.CLP
+
+Open the project by using command CLIPSDOS -f auto_repair.CLP
+
+Run (reset) command
+
+Run (run) command
+
+The project is already ran!
 
 ## Code Examples
 
