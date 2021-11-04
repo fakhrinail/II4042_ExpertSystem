@@ -1,28 +1,3 @@
-; Fakta awal
-(deffacts initial_state
-  (found_problem n)
-)
-
-; Rule menu
-(defrule banner
-  (declare (salience 10))
-=>  
-  (printout t crlf crlf)
-  (printout t "Sistem Pakar untuk diagnosis mobil")
-  (printout t crlf crlf)
-)
-
-(defrule menu
-  (declare (salience 5))
-=>
-  (printout t "Pilih komponen yang ingin diperiksa:" crlf)
-  (printout t "1. Mesin" crlf)
-  (printout t "2. Ban" crlf)
-  (printout t "3. Rem" crlf)
-  (printout t "Masukkan angka antara 1-3" crlf)
-  (assert (chosen_menu (read)))
-)
-
 ; Rule permasalahan mesin
 (defrule gas_check
   (chosen_menu 1)
