@@ -1,6 +1,7 @@
 
 from flask import Flask
 from flask import render_template
+from flask import request
 
 app = Flask(__name__)
 
@@ -33,6 +34,15 @@ def menu3():
   brake_facts = []
   return render_template('expert_system.html', questions=brake_questions)
 
-@app.route("/answers", methods=('POST'))
+@app.route("/answers", methods=['POST'])
 def answers():
   facts = []
+  if (request.form['blabla'] == "on"):
+    facts.append("(unbalanced car y)")
+  # for fact in facts:
+
+  print(request.form['blabla'], request.form['uhuy'])
+
+@app.route("/conclusion")
+def hasil():
+  return render_template("")

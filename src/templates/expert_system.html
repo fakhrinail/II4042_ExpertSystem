@@ -8,14 +8,15 @@
   </head>
   <body>
     <h1>Bengkel Online</h1>
-    <form>
+    <form action="/answers" method="post">
       {% for question in questions %}
       <div>
         <h2>{{ question }}</h2>
-        <button>YES</button>
-        <button>NO</button>
+        <input name="blabla" type="radio">YES</input>
+        <input name="blabla" type="radio">NO</input>
       </div>
       {% endfor %}
+      <button type="submit">SUBMIT</button>
     </form>
   </body>
 </html>
