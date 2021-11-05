@@ -1,16 +1,8 @@
 ; Rule permasalahan mesin
-(defrule gas_check
-  (chosen_menu 1)
-=>
-  (printout t "Apakah mobil terisi bensin? (y/n)" crlf)
-  (assert (gas_in_tank (read)))
-  (printout t "Apakah bensin masuk ke karburator? (y/n)" crlf)
-  (assert (gas_in_carburator (read)))
-)
-
 (defrule empty_fuel_tank_check
   (gas_in_tank n)
 => 
+  (assert (empty_fuel y))
   (printout t "Bensin mobil kamu habis!" crlf)
   (printout t "Isi bensin di pom bensin terdekat" crlf)
 )
@@ -20,21 +12,7 @@
   (gas_in_carburator y)
 =>
   (assert (engine_getting_gas y))
-)
-
-(defrule engine_turnover_check
-  (gas_in_tank y)
-=> 
-  (printout t "Apakah mobil bisa di-starter? (y/n)" crlf)
-  (assert (engine_turnover (read)))
-)
-
-(defrule slow_acc_check
-  (gas_in_tank y)
-  (engine_turnover y)
-=> 
-  (printout t "Apakah akselerasi mobil terasa lambat? (y/n)" crlf)
-  (assert (slow_acc (read)))
+  (printout t "Mesin berasap" crlf)
 )
 
 (defrule spark_plugs_check
@@ -45,13 +23,6 @@
   (assert (spark_plugs y))
   (printout t "Busi mobil bermasalah!" crlf)
 )
-
-(defrule lights_check
-  (gas_in_tank y)
-=>
-  (printout t "Apakah lampu mobil dapat menyala? (y/n)" crlf)
-  (assert (lights_on (read)))
-  )
 
 (defrule battery_cables_check
   (engine_turnover false)
@@ -71,13 +42,6 @@
 )
 
 ; Rule permasalahan ban
-(defrule car_balance_check
-  (chosen_menu 2)
-=>
-  (printout t "Apakah mobil terasa tidak seimbang/bergoyang? (y/n)" crlf)
-  (assert (unbalanced_car (read)))
-)
-
 (defrule tire_pressure_check
 =>
   (printout t "Apakah tekanan ban terasa lemah? (y/n)" crlf)
@@ -93,13 +57,6 @@
 )
 
 ; Rule permasalahan rem
-(defrule brake_sound_check
-  (chosen_menu 3)
-=>
-  (printout t "Apakah terdengar bunyi menyelekit saat mengerem? (y/n)" crlf)
-  (assert (squealing_sounds (read)))
-)
-
 (defrule brake_pad_check
   (squealing_sounds y)
 =>
