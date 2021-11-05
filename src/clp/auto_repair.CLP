@@ -3,6 +3,8 @@
   (gas_in_tank n)
 => 
   (assert (empty_fuel y))
+  (assert (problem Bensin mobil habis!))
+  (assert (solution Isi bensin di pom bensin terdekat))
   (printout t "Bensin mobil kamu habis!" crlf)
   (printout t "Isi bensin di pom bensin terdekat" crlf)
 )
@@ -21,6 +23,8 @@
   (slow_acc y)
 =>
   (assert (spark_plugs y))
+  (assert (problem Busi mobil bermasalah!))
+  (assert (solution ))
   (printout t "Busi mobil bermasalah!" crlf)
 )
 
@@ -30,6 +34,10 @@
 =>
   (assert (battery_problem y))
   (assert (cables_problem y))
+  (assert (problem Aki mobil bermasalah!))
+  (assert (solution Cek kembali aki dan jika rusak ganti aki))
+  (assert (problem Kabel mobil bermasalah!))
+  (assert (solution Cek kembali kabel dan jika rusak ganti kabel))
   (printout t "Aki dan kabel mobil perlu diganti!" crlf)
 )
 
@@ -38,6 +46,8 @@
   (lights_on false)
 =>
   (assert (starter_motor_problem y))
+  (assert (problem Dinamo starter mobil bermasalah!))
+  (assert (solution Cek kembali dinamo dan bawa ke bengkel))
   (printout t "Ada masalah pada motor!" crlf)
 )
 
@@ -47,6 +57,8 @@
   (low_pressure y)
 =>
   (assert (flat_tire y))
+  (assert (problem Ban mobil kempes!))
+  (assert (solution Ganti ban dengan ban serep))
   (printout t "Ban mobil kempes!" crlf)
 )
 
@@ -54,6 +66,8 @@
 (defrule brake_pad_check
   (squealing_sounds y)
 =>
-  (printout t "Kampas rem sudah aus!" crlf)
   (assert (worn_brake_pad y))
+  (assert (problem Kampas rem mobil sudah habis!))
+  (assert (solution Ganti kampas rem mobil))
+  (printout t "Kampas rem sudah aus!" crlf)
 )
