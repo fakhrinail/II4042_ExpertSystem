@@ -12,8 +12,8 @@ class Clips:
       self.env.add_router(logger)
       self.env.reset()
   
-  def load(self):
-    self.env.load("./auto_repair.CLP")
+  def load(self, path):
+    self.env.load(path)
 
   def reset(self):
     self.env.reset()
