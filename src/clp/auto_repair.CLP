@@ -42,12 +42,6 @@
 )
 
 ; Rule permasalahan ban
-(defrule tire_pressure_check
-=>
-  (printout t "Apakah tekanan ban terasa lemah? (y/n)" crlf)
-  (assert (low_pressure (read)))
-)
-
 (defrule flat_tire_check
   (unbalanced_car y)
   (low_pressure y)
