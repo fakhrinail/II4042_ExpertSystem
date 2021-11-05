@@ -50,4 +50,5 @@ def send_answers():
 
 @app.route("/conclusion")
 def hasil():
+  facts = session.get("facts", None)
   return render_template("")
