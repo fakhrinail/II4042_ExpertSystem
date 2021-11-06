@@ -56,9 +56,9 @@ def send_answers():
   mq = 0
   for question in machine_questions:
     if(request.form.get(question)== "yes" and mq == 0):
-      session_list.append("(engine_getting_gas y)")
+      session_list.append("(gas_in_tank y)")
     elif(request.form.get(question)== "no" and mq == 0):
-      session_list.append("(engine_getting_gas n)")
+      session_list.append("(gas_in_tank n)")
     elif(request.form.get(question)== "yes" and mq == 1):
       session_list.append("(gas_in_carburator y)")
     elif(request.form.get(question)== "no" and mq == 1):
@@ -79,11 +79,12 @@ def send_answers():
     if(mq==5):
       mq = 0
   for qt in tire_questions:
+    print(mq)
     if(request.form.get(qt)== "yes" and mq == 0):
       session_list.append("(unbalanced_car y)")
     elif(request.form.get(qt)== "no" and mq == 0):
       session_list.append("(unbalanced_car n)")
-    elif(request.form.get(qt)== "no" and mq == 1):
+    elif(request.form.get(qt)== "yes" and mq == 1):
       session_list.append("(low_pressure y)")
     elif(request.form.get(qt)== "no" and mq == 1):
       session_list.append("(low_pressure n)")
@@ -91,9 +92,10 @@ def send_answers():
     if(mq==2):
       mq=0
   for qb in brake_questions:
-    if(request.form.get(qt)== "yes" and mq == 0):
+    print(mq)
+    if(request.form.get(qb)== "yes" and mq == 0):
       session_list.append("(squealing_sounds y)")
-    elif(request.form.get(qt)== "no" and mq == 0):
+    elif(request.form.get(qb)== "no" and mq == 0):
       session_list.append("(squealing_sounds n)")
   session['facts'] = session_list
   for fact in session['facts'] :
