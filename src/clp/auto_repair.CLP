@@ -24,13 +24,13 @@
 =>
   (assert (spark_plugs y))
   (assert (problem Busi mobil bermasalah!))
-  (assert (solution ))
+  (assert (solution Ganti busi!))
   (printout t "Busi mobil bermasalah!" crlf)
 )
 
 (defrule battery_cables_check
-  (engine_turnover false)
-  (lights_on false)
+  (engine_turnover n)
+  (lights_on n)
 =>
   (assert (battery_problem y))
   (assert (cables_problem y))
@@ -42,8 +42,8 @@
 )
 
 (defrule starter_motor_check
-  (engine_turnover false)
-  (lights_on false)
+  (engine_turnover n)
+  (lights_on n)
 =>
   (assert (starter_motor_problem y))
   (assert (problem Dinamo starter mobil bermasalah!))

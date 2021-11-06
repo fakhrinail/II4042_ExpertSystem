@@ -39,12 +39,23 @@ class Clips:
   def get_problems(self):
     facts = self.get_facts_as_strings()
 
-    problems = filter(lambda fact: fact[1:8] == "problem", facts)
+    # problems = filter(lambda fact: fact[1:8] == "problem", facts)
+
+    problems = []
+    for fact in facts:
+      if(fact[1:8] == "problem"):
+        problems.append(fact[8:-1])
+
     return problems
   
   def get_solutions(self):
     facts = self.get_facts_as_strings()
 
-    solutions = filter(lambda fact: fact[1:9] == "solution", facts)
-    print(solutions)
+    # solutions = filter(lambda fact: fact[1:9] == "solution", facts)
+
+    solutions = []
+    for fact in facts:
+      if(fact[1:9] == "solution"):
+        solutions.append(fact[9:-1])
+
     return solutions

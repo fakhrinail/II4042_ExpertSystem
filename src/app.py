@@ -21,7 +21,6 @@ def menu1():
     "Apakah mobil bisa di-starter?", 
     "Apakah akselerasi mobil terasa lemah?", 
     "Apakah lampu mobil dapat menyala?"]
-  machine_facts = []
   return render_template('expert_system.html', questions=machine_questions)
 
 @app.route("/questions/tire")
@@ -29,20 +28,17 @@ def menu2():
   tire_questions = [
     "Apakah mobil terasa tidak seimbang/bergoyang?", 
     "Apakah tekanan ban terasa lemah?"]
-  tire_facts = []
   return render_template('expert_system.html', questions=tire_questions)
 
 @app.route("/questions/brake")
 def menu3():
   brake_questions = ["Apakah terdengar bunyi menyelekit saat mengerem?"]
-  brake_facts = []
   return render_template('expert_system.html', questions=brake_questions)
 
 @app.route("/send/answers", methods=['POST'])
 
 def send_answers():
-  session['facts'] = [] # facts dr form masukin sini nanti
-  session_list = session['facts']
+  session_list = []
   machine_questions = [
     "Apakah mobil terisi bensin?", 
     "Apakah bensin masuk ke karburator?", 
@@ -56,47 +52,47 @@ def send_answers():
   mq = 0
   for question in machine_questions:
     if(request.form.get(question)== "yes" and mq == 0):
-      session_list.append("(gas_in_tank y)")
+      session_list.append('(gas_in_tank y)')
     elif(request.form.get(question)== "no" and mq == 0):
-      session_list.append("(gas_in_tank n)")
+      session_list.append('(gas_in_tank n)')
     elif(request.form.get(question)== "yes" and mq == 1):
-      session_list.append("(gas_in_carburator y)")
+      session_list.append('(gas_in_carburator y)')
     elif(request.form.get(question)== "no" and mq == 1):
-      session_list.append("(gas_in_carburator n)")
+      session_list.append('(gas_in_carburator n)')
     elif(request.form.get(question)== "yes" and mq == 2):
-      session_list.append("(engine_turnover y)")
+      session_list.append('(engine_turnover y)')
     elif(request.form.get(question)== "no" and mq == 2):
-      session_list.append("(engine_turnover n)")
+      session_list.append('(engine_turnover n)')
     elif(request.form.get(question)== "yes" and mq == 3):
-      session_list.append("(slow_acc y)")
+      session_list.append('(slow_acc y)')
     elif(request.form.get(question)== "no" and mq == 3):
-      session_list.append("(slow_acc n)")
+      session_list.append('(slow_acc n)')
     elif(request.form.get(question)== "yes" and mq == 4):
-      session_list.append("(lights_on y)")
+      session_list.append('(lights_on y)')
     elif(request.form.get(question)== "no" and mq == 4):
-      session_list.append("(lights_on n)")
+      session_list.append('(lights_on n)')
     mq += 1
     if(mq==5):
       mq = 0
   for qt in tire_questions:
     print(mq)
     if(request.form.get(qt)== "yes" and mq == 0):
-      session_list.append("(unbalanced_car y)")
+      session_list.append('(unbalanced_car y)')
     elif(request.form.get(qt)== "no" and mq == 0):
-      session_list.append("(unbalanced_car n)")
+      session_list.append('(unbalanced_car n)')
     elif(request.form.get(qt)== "yes" and mq == 1):
-      session_list.append("(low_pressure y)")
+      session_list.append('(low_pressure y)')
     elif(request.form.get(qt)== "no" and mq == 1):
-      session_list.append("(low_pressure n)")
+      session_list.append('(low_pressure n)')
     mq+=1
     if(mq==2):
       mq=0
   for qb in brake_questions:
     print(mq)
     if(request.form.get(qb)== "yes" and mq == 0):
-      session_list.append("(squealing_sounds y)")
+      session_list.append('(squealing_sounds y)')
     elif(request.form.get(qb)== "no" and mq == 0):
-      session_list.append("(squealing_sounds n)")
+      session_list.append('(squealing_sounds n)')
   session['facts'] = session_list
   for fact in session['facts'] :
     print(fact)
@@ -109,9 +105,18 @@ def send_answers():
   # for fact in facts:
 
   #print(request.form['blabla'], request.form['uhuy'])
-  return redirect('conclusion')
+  return redirect("../conclusion")
 
 @app.route("/conclusion")
 def hasil():
+  clips = Clips()
+
   facts = session.get("facts", None)
-  return render_template("")
+  clips.load("./clp/auto_repair.CLP")
+  clips.insert_facts(facts)
+  clips.run()
+
+  problems = clips.get_problems()
+  solutions = clips.get_solutions()
+  
+  return render_template("conclusion.html", problems=problems, solutions=solutions)
