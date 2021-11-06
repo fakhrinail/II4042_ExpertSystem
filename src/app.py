@@ -8,7 +8,7 @@ from werkzeug.utils import redirect
 from clp import Clips
 
 app = Flask(__name__)
-
+app.secret_key = "super secret key"
 @app.route("/")
 def index():
   return render_template('index.html')
@@ -39,14 +39,75 @@ def menu3():
   return render_template('expert_system.html', questions=brake_questions)
 
 @app.route("/send/answers", methods=['POST'])
+
 def send_answers():
   session['facts'] = [] # facts dr form masukin sini nanti
-  if (request.form['blabla'] == "on"):
-    facts.append("(unbalanced car y)")
+  session_list = session['facts']
+  machine_questions = [
+    "Apakah mobil terisi bensin?", 
+    "Apakah bensin masuk ke karburator?", 
+    "Apakah mobil bisa di-starter?", 
+    "Apakah akselerasi mobil terasa lemah?", 
+    "Apakah lampu mobil dapat menyala?"]
+  tire_questions = [
+    "Apakah mobil terasa tidak seimbang/bergoyang?", 
+    "Apakah tekanan ban terasa lemah?"]
+  brake_questions = ["Apakah terdengar bunyi menyelekit saat mengerem?"]
+  mq = 0
+  for question in machine_questions:
+    if(request.form.get(question)== "yes" and mq == 0):
+      session_list.append("(engine_getting_gas y)")
+    elif(request.form.get(question)== "no" and mq == 0):
+      session_list.append("(engine_getting_gas n)")
+    elif(request.form.get(question)== "yes" and mq == 1):
+      session_list.append("(gas_in_carburator y)")
+    elif(request.form.get(question)== "no" and mq == 1):
+      session_list.append("(gas_in_carburator n)")
+    elif(request.form.get(question)== "yes" and mq == 2):
+      session_list.append("(engine_turnover y)")
+    elif(request.form.get(question)== "no" and mq == 2):
+      session_list.append("(engine_turnover n)")
+    elif(request.form.get(question)== "yes" and mq == 3):
+      session_list.append("(slow_acc y)")
+    elif(request.form.get(question)== "no" and mq == 3):
+      session_list.append("(slow_acc n)")
+    elif(request.form.get(question)== "yes" and mq == 4):
+      session_list.append("(lights_on y)")
+    elif(request.form.get(question)== "no" and mq == 4):
+      session_list.append("(lights_on n)")
+    mq += 1
+    if(mq==5):
+      mq = 0
+  for qt in tire_questions:
+    if(request.form.get(qt)== "yes" and mq == 0):
+      session_list.append("(unbalanced_car y)")
+    elif(request.form.get(qt)== "no" and mq == 0):
+      session_list.append("(unbalanced_car n)")
+    elif(request.form.get(qt)== "no" and mq == 1):
+      session_list.append("(low_pressure y)")
+    elif(request.form.get(qt)== "no" and mq == 1):
+      session_list.append("(low_pressure n)")
+    mq+=1
+    if(mq==2):
+      mq=0
+  for qb in brake_questions:
+    if(request.form.get(qt)== "yes" and mq == 0):
+      session_list.append("(squealing_sounds y)")
+    elif(request.form.get(qt)== "no" and mq == 0):
+      session_list.append("(squealing_sounds n)")
+  session['facts'] = session_list
+  for fact in session['facts'] :
+    print(fact)
+
+  #for question in questions:
+    #if (request.form[question] == yes or 
+  #print(request.form["uhuy"])
+  #if (request.form['blabla'] == "on"):
+    #"facts".append("(unbalanced car y)")
   # for fact in facts:
 
-  print(request.form['blabla'], request.form['uhuy'])
-  return redirect(url_for('/conclusion'))
+  #print(request.form['blabla'], request.form['uhuy'])
+  return redirect('conclusion')
 
 @app.route("/conclusion")
 def hasil():

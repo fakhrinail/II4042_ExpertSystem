@@ -8,12 +8,12 @@
   </head>
   <body>
     <h1>Bengkel Online</h1>
-    <form action="/answers" method="post">
+    <form action="/send/answers" method="post">
       {% for question in questions %}
       <div>
         <h2>{{ question }}</h2>
-        <input name="blabla" type="radio">YES</input>
-        <input name="blabla" type="radio">NO</input>
+        <input name='{{ question }}'  value="yes" type="radio">YES</input>
+        <input name='{{ question }}'  value="no" type="radio">NO</input>
       </div>
       {% endfor %}
       <button type="submit">SUBMIT</button>
