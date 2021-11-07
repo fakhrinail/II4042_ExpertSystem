@@ -8,9 +8,7 @@
 - [Technologies](#technologies)
 - [Setup](#setup)
 - [Features](#features)
-- [Status](#status)
-- [Inspiration](#inspiration)
-- [Contact](#contact)
+- [Created by](#created-by)
 
 ## General info
 
