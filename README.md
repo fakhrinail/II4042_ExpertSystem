@@ -14,6 +14,8 @@
 
 Projek ini dibuat untuk tugas dari mata kuliah II 4042 Artificial Intelligence for Business. Projek menggunakan CLIPS untuk membuat expert system dan menggunakan Flask untuk membuat web app.
 
+Web dapat dilihat di https://bengkel-online.herokuapp.com/
+
 ## Technologies
 
 - Flask
