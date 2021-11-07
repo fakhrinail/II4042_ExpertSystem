@@ -120,3 +120,6 @@ def hasil():
   solutions = clips.get_solutions()
   
   return render_template("conclusion.html", problems=problems, solutions=solutions)
+
+if __name__ == "__main__":
+  app.run()
