@@ -1,11 +1,10 @@
 # II 4042 Web Based Expert System
 
-> Here goes your awesome project description!
+> Expert system untuk diagnosis permasalahan mobil
 
 ## Table of contents
 
 - [General info](#general-info)
-- [Screenshots](#screenshots)
 - [Technologies](#technologies)
 - [Setup](#setup)
 - [Features](#features)
@@ -15,17 +14,12 @@
 
 ## General info
 
-Add more general information about project. What the purpose of the project is? Motivation?
-
-## Screenshots
-
-![Example screenshot](./img/screenshot.png)
+Projek ini dibuat untuk tugas dari mata kuliah II 4042 Artificial Intelligence for Business. Projek menggunakan CLIPS untuk membuat expert system dan menggunakan Flask untuk membuat web app.
 
 ## Technologies
 
-- Tech 1 - version 1.0
-- Tech 2 - version 2.0
-- Tech 3 - version 3.0
+- Flask
+- CLIPS
 
 ## Setup
 
@@ -59,38 +53,20 @@ pip install -r requirements.txt
 export FLASK_APP=app
 ```
 
-6. Go to src folder and run flask
+6. Run flask
 
 ```
 flask run
 ```
 
-## Code Examples
-
-Show examples of usage:
-`put-your-code-here`
-
 ## Features
 
-List of features ready and TODOs for future development
+- Dapat mendiagnosis masalah pada mesin, ban dan rem mobil
 
-- Awesome feature 1
-- Awesome feature 2
-- Awesome feature 3
+## Created by
 
-To-do list:
+13519035 Fakhri Nail Wibowo
 
-- Wow improvement to be done 1
-- Wow improvement to be done 2
+13519046 Dwianditya Hanif Raharjanto
 
-## Status
-
-Project is: _in progress_, _finished_, _no longer continue_ and why?
-
-## Inspiration
-
-Add here credits. Project inspired by..., based on...
-
-## Contact
-
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
+18219089 Relieyan Ramadhan Hilman	
